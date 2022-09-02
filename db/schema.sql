@@ -3,7 +3,7 @@ CREATE DATABASE empInfo_db;
 
 USE empInfo_db;
 
-CREATE TABLE department(
+CREATE TABLE departments(
   id INT NOT NULL AUTO_INCREMENT,
 --   roles_id INT,
   department_name VARCHAR(30) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE roles(
   FOREIGN KEY (department_id) REFERENCES department(id)
 );
 
-CREATE TABLE employee(
+CREATE TABLE employees(
   id INT NOT NULL AUTO_INCREMENT,
 first_name VARCHAR(30),
 last_name VARCHAR(30),

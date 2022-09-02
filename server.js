@@ -9,7 +9,7 @@ const db = mysql.createConnection(
     // MySQL username,
     user: "root",
     // TODO: Add MySQL password
-    password: "",
+    password: "PWforsql123!!",
     database: "empInfo_db",
   },
   console.log(`Connected to the empInfo_db database.`)
@@ -19,16 +19,17 @@ const start = () => {
     .prompt([
       {
         type: "list",
-        Message: "Please enter the interns name?",
+        Message: "Select an option from main menu.",
         name: "choices",
         choices: [
           "view all departments",
-          " view all roles",
+          "view all roles",
           "view all employees",
           "add a department",
           "add a role",
           "add an employee",
           "update an employee role",
+          "quit",
         ],
       },
     ])
@@ -38,23 +39,26 @@ const start = () => {
         case "view all departments":
           viewDepartments();
           break;
-        case "add an engineer":
-          //   engineerPrompt();
+        case "view all roles":
+          viewRoles();
           break;
-        case "add an intern":
-          //   internPrompt();
+        case "view all employees":
+          viewEmployees();
           break;
-        case "complete team":
-          //   completeTeam();
+        case "add a department":
+          addDepartment();
           break;
-        case "add an engineer":
-          //   engineerPrompt();
+        case "add a role":
+          addRole();
           break;
-        case "add an intern":
-          //   internPrompt();
+        case "add an employee":
+          addEmployee();
           break;
-        case "complete team":
-          //   completeTeam();
+        case "update an employee role":
+          updateEmployeeRole();
+          break;
+        case "quit":
+          quit();
           break;
         default:
           console.log("no options selected");
@@ -62,4 +66,33 @@ const start = () => {
     });
 };
 
-viewDepartments();
+function viewDepartments() {
+  db.query("SELECT * FROM departments", function (err, res) {
+    if (err) throw err;
+    console.table(res);
+    inquirer.prompt([
+      {
+        type: "list",
+        Message: "select option",
+        name: "choices",
+        choices: ["main menu", "quit"],
+      },
+    ]);
+  }).then((answer) => {
+    switch (answer.choices) {
+      case "main menu":
+        start();
+        break;
+      case "quit":
+        quit();
+        break;
+      default:
+        console.log("no options selected");
+    }
+  });
+}
+
+function quit() {
+  console.log("Goodbye!");
+  process.exit();
+}

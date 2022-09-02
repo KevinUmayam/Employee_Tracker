@@ -4,7 +4,7 @@ USE business;
 
 USE empInfo_db;
 
-INSERT INTO department(department_name)
+INSERT INTO departments(department_name)
 VALUES 
 ("accounting"),
 ("finance"),
@@ -17,7 +17,7 @@ VALUES("accountant", 60000,1),
        ("employee", 50000,2),
        ("employee", 70000,3);
 
-INSERT INTO employee(first_name, 
+INSERT INTO employees(first_name, 
                       last_name, 
                       roles_id, 
                       manager_id)
