@@ -92,6 +92,58 @@ function viewDepartments() {
   });
 }
 
+function viewRoles() {
+  db.query("SELECT * FROM roles", function (err, res) {
+    if (err) throw err;
+    console.table(res);
+    inquirer.prompt([
+      {
+        type: "list",
+        Message: "select option",
+        name: "choices",
+        choices: ["main menu", "quit"],
+      },
+    ]);
+  }).then((answer) => {
+    switch (answer.choices) {
+      case "main menu":
+        start();
+        break;
+      case "quit":
+        quit();
+        break;
+      default:
+        console.log("no options selected");
+    }
+  });
+}
+
+function viewEmployees() {
+  db.query("SELECT * FROM employees", function (err, res) {
+    if (err) throw err;
+    console.table(res);
+    inquirer.prompt([
+      {
+        type: "list",
+        Message: "select option",
+        name: "choices",
+        choices: ["main menu", "quit"],
+      },
+    ]);
+  }).then((answer) => {
+    switch (answer.choices) {
+      case "main menu":
+        start();
+        break;
+      case "quit":
+        quit();
+        break;
+      default:
+        console.log("no options selected");
+    }
+  });
+}
+
 function quit() {
   console.log("Goodbye!");
   process.exit();
