@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS empInfo_db;
-CREATE DATABASE empInfo_db;
+DROP DATABASE IF EXISTS emp_info_db;
+CREATE DATABASE emp_info_db;
 
-USE empInfo_db;
+USE emp_info_db;
 
 CREATE TABLE departments(
   id INT NOT NULL AUTO_INCREMENT,
@@ -16,7 +16,7 @@ CREATE TABLE roles(
   role_salary DECIMAL,
   department_id INT NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (department_id) REFERENCES department(id)
+  FOREIGN KEY (department_id) REFERENCES departments(id)
 );
 
 CREATE TABLE employees(
@@ -26,5 +26,5 @@ last_name VARCHAR(30),
 roles_id INT NOT NULL,
 manager_id INT,
   PRIMARY KEY (id),
-  FOREIGN KEY (manager_id) REFERENCES employee(id)
+  FOREIGN KEY (manager_id) REFERENCES employees(id)
 );
