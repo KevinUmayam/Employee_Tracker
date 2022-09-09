@@ -21,11 +21,10 @@ CREATE TABLE roles(
 
 CREATE TABLE employees(
   id INT NOT NULL AUTO_INCREMENT,
-first_name VARCHAR(30) NOT NULL,
-last_name VARCHAR(30) NOT NULL,
+first_name VARCHAR(30) ,
+last_name VARCHAR(30),
 roles_id INT NOT NULL,
 manager_id INT,
   PRIMARY KEY (id),
   FOREIGN KEY (manager_id) REFERENCES employees(id)
-  FOREIGN KEY (roles_id) REFERENCES employees(id)
 );
